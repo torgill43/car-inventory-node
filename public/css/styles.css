@@ -1,6 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=PT+Serif&display=swap');
+
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+:root {
+  /* Font & Weight */
+  --title-font: "Montserrat";
+  --title-weight: 500;
+  --main-font: "PT Serif";
+  --par-font: "Montserrat";
+  --par-weight: 400;
+
+  /* Colors */
+  --primary: #00C2D1;
+  --secondary: #0A1045;
+  --font_background: #DED9E2;
+}
+
+body {
+  color: var(--secondary);
+  font-family: var(--main-font);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.homelink {
+  font-family: var(--title-font);
+  font-weight: var(--title-weight);
+  font-size: xx-large;
+  text-decoration: none;
+  color: var(--secondary)
+}
+
+.accountLink a {
+  font-family: var(--title-font);
+  font-weight: var(--title-weight);
+  text-decoration: none;
+  color: var(--secondary)
+}
+
+.accountLink a:hover {
+  color: var(--primary);
+}
+
+nav ul {
+  padding-left: 0;
+  display: flex;
+  background-color: var(--secondary);
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+nav ul li {
+  list-style: none;
+  font-weight: var(--title-weight);
+  padding: 15px 10px;
+  color: var(--font_background);
+  font-family: var(--par-font);
+}
+
+nav ul li:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+h1 {
+  font-family: var(--main-font);
+  font-size: x-large;
+}
+
+#hero {
+  position: relative;
+  color: rgb(0, 194, 209, 1);
+  width: 100%;
+  display: flex;
+}
+
+#hero img {
+  width: 80%;
+  margin: 0 auto;
+}
+
+#hero h3 {
+  margin: 0;
+  font-weight: bolder;
+  font-size: large;
+  margin-right: 2px;
+}
+
+#hero ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  font-weight: bold;
+  font-size: small;
+  font-family: var(--par-font);
+}
+
+#hero-popup {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(255,255,255,.8);
+  /* opacity: .8; */
+  font-family: var(--main-font);
+  padding-left: 5px;
+}
+
+#hero-popup button {
+  background-color:rgb(0, 194, 209, 1);
+  color: var(--secondary);
+  font-weight: bold;
+  opacity: 1;
+  padding: 10px;
+  border-radius: 3pt;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  border: none;
+  box-shadow: 1px 1px gray;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+#reviews, #upgrades {
+  max-width: 400px;
+
+}
+
+#reviews h2 {
+  margin-bottom: 10px;
+}
+
+#reviews ul {
+  padding-left: 15px;
+  font-size: small;
+}
+
+#reviews ul li {
+  font-family: var(--par-font);
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.upgrade-contain {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.upgrade-contain div {
+  display: flex;
+  flex-direction: column;
+  width: 175px;
+  height: 105px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+}
+
+.upgrade-contain div:nth-child(3), div:nth-child(4) {
+  margin-top: 35px;
+  margin-bottom: 5px;
+}
+
+.upgrade-img {
+  background-color: var(--primary);
+  border: 1px solid var(--secondary)
+}
+.upgrade-img img {
+  width: 35%;
+}
+
+@media screen and (min-width: 750px){
+  body {
+    background-image: url(/images/site/checkerboard.jpg);
+    background-repeat: repeat;
+    /* z-index: 100; */
+  }
+ 
+  #wrapper {
+    background-color: white;
+    margin: 0 auto;
+    border: 3px solid var(--primary);
+    padding: 10px;
+    max-width: 800px;
+  }
+
+  .accountLink a {
+    font-size: large;
+  }
+
+  nav ul li {
+    font-size: large;
+    width: 95px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: xx-large;
+  }
+
+  #hero-popup {
+    position: absolute;
+    left: 25px;
+    top: 15px;
+    padding-left: 15px;
+  }
+
+  #hero h3 {
+    font-weight: bolder;
+    font-size: xx-large;
+    margin-right: 10px;
+  }
+  
+  #hero ul {
+    padding-left: 5px;
+    font-size: x-large;
+  }
+
+  #hero-popup button {
+    font-size: large;
+    padding: 15px 25px;
+    margin-top: 20px;
+  }
+  
+
+  section {
+    flex-direction: row-reverse;
+    /* max-width: 800px; */
+    justify-content: space-around;
+  }
+
+  #reviews h2, #upgrades h2 {
+    margin-bottom: 40px;
+  }
+
+  #reviews ul {
+    padding-left: 15px;
+    font-size: medium;
+  }
+
+  #reviews ul li {
+    margin-bottom: 25px;
+  }
+
+  .upgrade-contain div:nth-child(3), div:nth-child(4) {
+    margin-top: 25px;
+  }
+
 }
