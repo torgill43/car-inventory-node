@@ -23,7 +23,7 @@
 
 body {
   color: var(--secondary);
-  font-family: var(--main-font);
+  font-family: "PT Serif";
 }
 
 header {
@@ -32,16 +32,16 @@ header {
 }
 
 .homelink {
-  font-family: var(--title-font);
-  font-weight: var(--title-weight);
+  font-family: "Montserrat";
+  font-weight: 500;
   font-size: xx-large;
   text-decoration: none;
   color: var(--secondary)
 }
 
 .accountLink a {
-  font-family: var(--title-font);
-  font-weight: var(--title-weight);
+  font-family: "Montserrat";
+  font-weight: 500;
   text-decoration: none;
   color: var(--secondary)
 }
@@ -60,10 +60,10 @@ nav ul {
 
 nav ul li {
   list-style: none;
-  font-weight: var(--title-weight);
+  font-weight: 500;
   padding: 15px 10px;
   color: var(--font_background);
-  font-family: var(--par-font);
+  font-family: "Montserrat";
 }
 
 nav ul li:hover {
@@ -72,7 +72,7 @@ nav ul li:hover {
 }
 
 h1 {
-  font-family: var(--main-font);
+  font-family: "PT Serif";
   font-size: x-large;
 }
 
@@ -101,7 +101,7 @@ h1 {
   padding: 0;
   font-weight: bold;
   font-size: small;
-  font-family: var(--par-font);
+  font-family: "Montserrat";
 }
 
 #hero-popup {
@@ -110,7 +110,7 @@ h1 {
   top: 0;
   background-color: rgba(255,255,255,.8);
   /* opacity: .8; */
-  font-family: var(--main-font);
+  font-family: "PT Serif";
   padding-left: 5px;
 }
 
@@ -147,7 +147,7 @@ section {
 }
 
 #reviews ul li {
-  font-family: var(--par-font);
+  font-family: "Montserrat";
   font-weight: bold;
   margin-bottom: 15px;
 }
