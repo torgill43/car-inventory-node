@@ -3,14 +3,21 @@ require("dotenv").config()
 /* **********
  *  Connection Pool 
  * SSL object needed for local testing of app
- * when using remote DB connection (lines 11-13)
- * comment out for deployment.
+ * But will cause problems in production environment
+ * IF-ELSE will make determination which to use
  * ********** */
-const pool = new Pool({
+let pool
+if (process.env.NODE_ENV == "development") {
+  pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
-        rejectUnauthorized: false,
+      rejectUnauthorized: false,
     },
-})
+  })
+} else {
+  pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+  })
+}
 
 module.exports = pool
