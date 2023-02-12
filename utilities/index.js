@@ -32,4 +32,30 @@ Util.getNav = async function (req, res, next) {
     return nav
 }
 
+// Builds the individual vehicle display
+Util.displayVehicles = async function (data) {
+    let div = '<div class="details-cont>';
+    div += '<img src=' + 
+        data.inv_img + 
+        'alt="Image of' +
+        data.inv_make + data.inv_model + 
+        '">';
+    div += '<div class="table-info"><h2 class="detail-title">' +
+        data.inv_make +
+        data.inv_model +
+        "Details</h2>";
+    div += "<table><tr>Price:" +
+        '<span> new Intl.NumberFormat("en-US").format(' +
+        data.inv_price +
+        ')</span></tr><tr>Description:' +
+        data.inv_description + 
+        '</tr><tr>Color:' +
+        data.inv_color +
+        '</tr><tr>Miles:' +
+        data.inv_miles+ '</tr></table></div>';
+    div += "</div>";
+
+    return div;
+}
+
 module.exports = Util

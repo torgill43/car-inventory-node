@@ -1,0 +1,20 @@
+<!-- Title -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Message -->
+<% if (message) { %>
+    <p class="notice"><%= message %></p>
+    <% } %>
+
+<!-- Vehicles Display -->
+<% if(data.length > 0) { %>
+<!-- <section class="detail-display"> -->
+    <%- vehicleDisplay%>
+<!-- </section> -->
+<% } else { // Display no vehicles found message %>
+<p class="notice">Sorry, no matching vehicles could be found.</p>
+<% } %>
