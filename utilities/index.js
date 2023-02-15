@@ -6,9 +6,9 @@ const Util = {}
 ****************************************** */
 Util.buildNav = function (data) {
     let list = "<ul>"
-    list += '<li><a href="/" title="Home page">Home</a></li>'
+    list += '<li class="navlink"><a href="/" title="Home page">Home</a></li>'
     data.rows.forEach((row) => {
-        list += "<li>"
+        list += '<li class="navlink">'
         list +=
             '<a href="/inv/type/' +
             row.classification_id +
@@ -33,29 +33,32 @@ Util.getNav = async function (req, res, next) {
 }
 
 // Builds the individual vehicle display
-Util.displayVehicles = async function (data) {
-    let div = '<div class="details-cont>';
-    div += '<img src=' + 
-        data.inv_img + 
-        'alt="Image of' +
-        data.inv_make + data.inv_model + 
-        '">';
-    div += '<div class="table-info"><h2 class="detail-title">' +
-        data.inv_make +
-        data.inv_model +
-        "Details</h2>";
-    div += "<table><tr>Price:" +
-        '<span> new Intl.NumberFormat("en-US").format(' +
-        data.inv_price +
-        ')</span></tr><tr>Description:' +
-        data.inv_description + 
-        '</tr><tr>Color:' +
-        data.inv_color +
-        '</tr><tr>Miles:' +
-        data.inv_miles+ '</tr></table></div>';
-    div += "</div>";
+Util.buildVehiclePage = function (data) {
+    // const moneyFormat = toLocaleString("en-US", {style:"currency", currency:"USD"})
+    let display = `
+    <div class="details-cont">
+        <img src="${data.inv_image}" alt="Image of ${data.inv_make} ${data.inv_model}">
+        <div class="table-info">
+            <h2 class="detail-title">${data.inv_make} ${data.inv_model} Details</h2>
+            <table>
+                <tr><td>Price: $<span>${new Intl.NumberFormat('en-US').format(data.inv_price)}</span></td></tr>
+                <tr><td>Description: ${data.inv_description}</td></tr>
+                <tr><td>Color: ${data.inv_color}</td></tr>
+                <tr><td>Miles: <span>${new Intl.NumberFormat('en-US').format(data.inv_miles)}</span></td></tr>
+            </table>
+        </div>
+    </div>
+    `  
 
-    return div;
+    return display
+    
 }
+
+// Build message
+// Util.getMessage = function () {
+//     let message = "<h1>You're Done!</h1>"
+//     return message
+// }
+// console.log("Hit utilities.")
 
 module.exports = Util

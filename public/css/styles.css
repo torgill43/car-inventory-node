@@ -56,20 +56,36 @@ nav ul {
   background-color: var(--secondary);
   width: 100%;
   justify-content: space-evenly;
+  border-radius: 5px;
 }
 
-nav ul li {
+.navlink {
   list-style: none;
   font-weight: 500;
   padding: 15px 10px;
-  color: var(--font_background);
   font-family: "Montserrat";
+  /* width: 85px; */
+  text-align: center;
 }
 
-nav ul li:hover {
+.navlink a {
+  color: var(--primary);
+  text-decoration: none;
+  padding: 15px;
+}
+
+/* .navlink:hover {
+} */
+
+.navlink a:hover {
   background-color: var(--primary);
   color: var(--secondary);
+  padding: 15px;
+  
 }
+/* ****************************** */
+/* HOME PAGE */
+/* ****************************** */
 
 h1 {
   font-family: "PT Serif";
@@ -182,11 +198,85 @@ section {
   width: 35%;
 }
 
+#wrapper main {
+  margin: 5px 15px;
+}
+
+/* ****************************** */
+/* CLASSIFICATION VIEW */
+/* ****************************** */
+
+#inv-display {
+  padding-left: 0;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#inv-display li {
+  border: 1px solid var(--secondary);
+  border-radius: 5px;
+  list-style-type: none;
+  text-align: center;
+  margin: 5px auto;
+}
+
+#inv-display li a {
+  text-decoration: none;
+  color: var(--secondary)
+}
+
+#inv-display li a:hover {
+  color: var(--primary)
+}
+
+#inv-display li a img{
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+#inv-display li div {
+  padding-bottom: 10px;
+}
+
+#inv-display li div h2 {
+  margin: 10px 0;
+}
+
+/* ****************************** */
+/* VEHICLE DETAIL VIEW */
+/* ****************************** */
+
+#detail-title {
+  font-size: xx-large;
+}
+
+.details-cont {
+  text-align: center;
+}
+
+.details-cont img {
+  border-radius: 5px;
+}
+
+.table-info {
+  text-align: left;
+}
+
+.table-info table {
+  border-spacing: 0 5px;
+  margin: 0 10px;
+}
+
+.table-info table tr:nth-child(even) {
+  background-color: rgb(212, 211, 211);
+}
+
+
+
 @media screen and (min-width: 750px){
   body {
     background-image: url(/images/site/checkerboard.jpg);
     background-repeat: repeat;
-    /* z-index: 100; */
   }
  
   #wrapper {
@@ -210,6 +300,10 @@ section {
   h1 {
     font-size: xx-large;
   }
+
+  /* ****************************** */
+  /* Query - HOME PAGE */
+  /* ****************************** */
 
   #hero-popup {
     position: absolute;
@@ -257,6 +351,52 @@ section {
 
   .upgrade-contain div:nth-child(3), div:nth-child(4) {
     margin-top: 25px;
+  }
+
+  /* ****************************** */
+  /* Query - CLASSIFICATION VIEW */
+  /* ****************************** */
+  
+  #inv-display {
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  #inv-display li {
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #inv-display li a {
+    height: 140px;
+  }
+
+  #inv-display li .namePrice a {
+    font-size: large;
+  }
+
+  #inv-display li a img{
+    margin-top: 1px;
+    width: 99%;
+  }
+
+  #inv-display hr {
+    width: 100%;
+  }
+
+  /* ****************************** */
+  /* Query - VEHICLE DETAIL VIEW */
+  /* ****************************** */
+
+  .details-cont {
+    display: flex;
+  }
+
+  .details-cont img {
+    width: 50%;
+    margin-right: 15px;
   }
 
 }
