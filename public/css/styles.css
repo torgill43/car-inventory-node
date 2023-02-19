@@ -271,6 +271,96 @@ section {
   background-color: rgb(212, 211, 211);
 }
 
+/* ****************************** */
+/* ACCOUNT LOGIN VIEW */
+/* ****************************** */
+
+#login-form {
+  margin: 0 auto;
+  max-width: 500px;
+  border: 1px solid var(--secondary);
+  border-radius: 5px;
+  padding: 25px 50px;
+  display: flex;
+  flex-direction: column;
+  background-color: #00c3d14e;
+  color: var(--secondary);
+}
+
+#login-form input {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  height: 25px;
+  /* background-color: #00c3d14e; */
+}
+
+#login-form p {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+#login-form p a {
+  text-decoration: none;
+  font-size: large;
+  color: var(--secondary);
+}
+
+#login-form p a:hover {
+  color: red;
+}
+
+#login-submit {
+  width: 75px;
+  margin: 0 auto;
+  font-family: var(--par-font);
+  font-weight: var(--par-weight);
+  font-size: medium;
+  cursor: pointer;
+}
+
+#login-submit:hover {
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+/* ****************************** */
+/* ACCOUNT REGISTER VIEW */
+/* ****************************** */
+
+#reg-form {
+  margin: 0 auto;
+  max-width: 500px;
+  border: 1px solid var(--secondary);
+  border-radius: 5px;
+  padding: 25px 50px;
+  display: flex;
+  flex-direction: column;
+  background-color: #00c3d14e;
+  color: var(--secondary);
+  font: var(--main-font);
+}
+
+#reg-form input {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  height: 25px;
+}
+
+#reg-submit  {
+  width: auto;
+  height: 35px;
+  margin: 0 auto 3px;
+  /* padding: 3px; */
+  font-family: var(--par-font);
+  font-weight: var(--par-weight);
+  font-size: medium;
+  cursor: pointer;
+}
+
+#reg-submit:hover {
+  background-color: var(--secondary);
+  color: var(--primary);
+}
 
 
 @media screen and (min-width: 750px){

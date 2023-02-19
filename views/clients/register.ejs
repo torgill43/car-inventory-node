@@ -1,0 +1,34 @@
+<!-- Title -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Error -->
+<% if (errors) { %>
+    <p class="notice"><%= error %></p>
+    <% } %>
+
+<!-- Message -->
+<% if (message) { %>
+    <p class="notice"><%= message %></p>
+    <% } %>
+
+<div id="reg-form-cont">
+    <form id="reg-form" action="/client/register" method="post">
+        <label for="client_firstname">First Name</label>
+        <input name="client_firstname" id="client_firstname" required>
+
+        <label for="client_lastname">Last Name</label>
+        <input name="client_lastname" id="client_lastname" required>
+
+        <label for="client_email">Email Address</label>
+        <input type="email" name="client_email" id="client_email" required>
+
+        <label for="client_password">Password</label>
+        <input type="password" title="Password must be at least 12 characters and contain at least 1 of each of the following: capital letter, number, and special character." name="client_password" id="client_password" required>
+
+        <input id="reg-submit" type="submit" value="Register">
+    </form>
+</div>
