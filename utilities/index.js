@@ -60,7 +60,7 @@ Util.buildClassificationDropdown = function (data) {
     let display = `
     <label for="classification_id">Classification</label>
     <select id="classification_id" name="classification_id" required>
-    <option value="none">Select a Classification...</option>`
+    <option value="">Select a Classification...</option>`
     data.rows.forEach((row) => {
         display += `<option value="${row.classification_id}">${row.classification_name}</option>`
     })
