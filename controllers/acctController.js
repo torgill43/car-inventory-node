@@ -30,7 +30,7 @@ async function buildRegister(req, res, next) {
 /* ****************************************
  *  Process registration request
  **************************************** */
-async function processRegistration(req, res) {
+async function processRegistration(req, res, next) {
   let nav = await utilities.getNav()
   const { client_firstname, client_lastname, client_email, client_password } =
     req.body

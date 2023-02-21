@@ -25,16 +25,16 @@ Util.buildNav = function (data) {
 /* *****************************************
 * Builds the navigation bar
 ****************************************** */
-// This builds the site nav
 Util.getNav = async function (req, res, next) {
     let data = await invModel.getClassifications()
     nav = Util.buildNav(data)
     return nav
 }
 
-// Builds the individual vehicle display
+/* *****************************************
+* Builds the individual vehicle display
+****************************************** */
 Util.buildVehiclePage = function (data) {
-    // const moneyFormat = toLocaleString("en-US", {style:"currency", currency:"USD"})
     let display = `
     <div class="details-cont">
         <img src="${data.inv_image}" alt="Image of ${data.inv_make} ${data.inv_model}">
@@ -49,9 +49,24 @@ Util.buildVehiclePage = function (data) {
         </div>
     </div>
     `  
-
     return display
+}
+
+/* **************************************************************
+* Builds the Classification select section of Add Vehicle form
+************************************************************** */
+
+Util.buildClassificationDropdown = function (data) {
+    let display = `
+    <label for="classification_id">Classification</label>
+    <select id="classification_id" name="classification_id" required>
+    <option value="none">Select a Classification...</option>`
+    data.rows.forEach((row) => {
+        display += `<option value="${row.classification_id}">${row.classification_name}</option>`
+    })
+    display += `</select>`
     
+    return display
 }
 
 // Build message

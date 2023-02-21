@@ -272,10 +272,9 @@ section {
 }
 
 /* ****************************** */
-/* ACCOUNT LOGIN VIEW */
+/* MASTER FORM STYLES */
 /* ****************************** */
-
-#login-form {
+form {
   margin: 0 auto;
   max-width: 500px;
   border: 1px solid var(--secondary);
@@ -287,12 +286,23 @@ section {
   color: var(--secondary);
 }
 
-#login-form input {
+form input {
   border-radius: 5px;
   margin-bottom: 10px;
   height: 25px;
   /* background-color: #00c3d14e; */
 }
+
+/* Various Views Message */
+
+.notice {
+  color: red;
+  font-style: italic;
+}
+
+/* ****************************** */
+/* ACCOUNT LOGIN VIEW */
+/* ****************************** */
 
 #login-form p {
   text-align: center;
@@ -327,30 +337,9 @@ section {
 /* ACCOUNT REGISTER VIEW */
 /* ****************************** */
 
-#reg-form {
-  margin: 0 auto;
-  max-width: 500px;
-  border: 1px solid var(--secondary);
-  border-radius: 5px;
-  padding: 25px 50px;
-  display: flex;
-  flex-direction: column;
-  background-color: #00c3d14e;
-  color: var(--secondary);
-  font: var(--main-font);
-}
-
-#reg-form input {
-  border-radius: 5px;
-  margin-bottom: 10px;
-  height: 25px;
-}
-
 #reg-submit  {
-  width: auto;
-  height: 35px;
+  width: 85px;
   margin: 0 auto 3px;
-  /* padding: 3px; */
   font-family: var(--par-font);
   font-weight: var(--par-weight);
   font-size: medium;
@@ -358,6 +347,80 @@ section {
 }
 
 #reg-submit:hover {
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+/* ****************************** */
+/* VEHICLE MANAGEMENT VIEW */
+/* ****************************** */
+
+.manage-cont {
+  display: flex;
+  flex-direction: column;
+}
+
+.manage-cont a {
+  text-decoration: none;
+  color: var(--secondary);
+  width: auto;
+  margin: 5px 20px;
+  display: block;
+  font-size: large;
+}
+
+.manage-cont a:hover {
+  color: var(--primary);
+}
+
+/* ****************************** */
+/* ADD CLASSIFICATION VIEW */
+/* ****************************** */
+
+#add-class-form p {
+  margin-bottom: 10px;
+}
+
+#add-class-submit {
+  width: 165px;
+  margin: 0 auto 3px;
+  font-family: var(--par-font);
+  font-weight: var(--par-weight);
+  font-size: medium;
+  cursor: pointer;
+}
+
+#add-class-submit:hover {
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+/* ****************************** */
+/* ADD VEHICLE VIEW */
+/* ****************************** */
+
+#add-vehicle-form select {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  height: 25px;
+}
+
+#add-vehicle-form textarea {
+  border-radius: 5px;
+  margin-bottom: 10px;
+  
+}
+
+#add-vehicle-submit {
+  width: 135px;
+  margin: 0 auto 3px;
+  font-family: var(--par-font);
+  font-weight: var(--par-weight);
+  font-size: medium;
+  cursor: pointer;
+}
+
+#add-vehicle-submit:hover {
   background-color: var(--secondary);
   color: var(--primary);
 }
@@ -374,7 +437,7 @@ section {
     margin: 0 auto;
     border: 3px solid var(--primary);
     padding: 10px;
-    max-width: 800px;
+    max-width: 1200px;
   }
 
   .accountLink a {
