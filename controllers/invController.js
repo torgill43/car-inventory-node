@@ -9,8 +9,10 @@ const invCont = {}
 invCont.buildByClassification = async function (req, res, next) {
     const classificationId = req.params.classificationId
     let data = await invModel.getVehichlesByClassificationId(classificationId)
+    console.log(data)
     let nav = await utilities.getNav()
     const className = data[0].classification_name
+    console.log(`classname: ${className}`)
     res.render("./inventory/classification-view", {
         title: className + " Vehicles",
         nav,
@@ -70,13 +72,12 @@ invCont.buildAddClass = async function (req, res, next) {
 * Process Add Classification request
 **************************************** */
 invCont.processAddClass = async function (req, res, next) {
-    let nav = await utilities.getNav()
     const {classification_name} = req.body
-    
+  
     const addClassResult = await invModel.addClass(classification_name)
+    let nav = await utilities.getNav()
     console.log(addClassResult)
     if (addClassResult) {
-        nav = await utilities.getNav()
         res.status(201).render("inventory/management-view.ejs", {
           title: "Vehicle Management",
           nav,
