@@ -10,7 +10,7 @@ router.get("/type/:classificationId", invController.buildByClassification);
 router.get("/detail/:inv_id", invController.buildVehicleDetails);
 
 // Route to display management view
-router.get("/management", invController.deliverManagementView);
+router.get("/", invController.deliverManagementView);
 
 // Route to add classification
 router.get("/add-class", invController.buildAddClass)

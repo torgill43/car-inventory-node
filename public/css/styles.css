@@ -293,6 +293,14 @@ form input {
   /* background-color: #00c3d14e; */
 }
 
+/* form input:required:invalid, input:focus:invalid {
+  background-color: rgba(255, 0, 0, 0.301);
+}
+
+form input:required:valid {
+  border-left: rgba(0, 128, 0, 0.696);
+} */
+
 /* Various Views Message */
 
 .notice {

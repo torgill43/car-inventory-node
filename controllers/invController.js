@@ -76,7 +76,7 @@ invCont.processAddClass = async function (req, res, next) {
   
     const addClassResult = await invModel.addClass(classification_name)
     let nav = await utilities.getNav()
-    console.log(addClassResult)
+    // console.log(addClassResult)
     if (addClassResult) {
         res.status(201).render("inventory/management-view.ejs", {
           title: "Vehicle Management",

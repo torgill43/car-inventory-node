@@ -4,6 +4,14 @@
     <% } else {
       res.redirect('/')
     } %>
+<!-- Error --> 
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
 
 <!-- Message -->
 <% if (message) { %>
@@ -11,12 +19,13 @@
     <% } %>
 
 <div id="login-form-cont">
-    <form id="login-form" action="/client/register" method="post">
-        <label for="client_username">Username</label>
-        <input type="email" name="client_username" id="client_username">
+    <form id="login-form" action="/client/login" method="post">
+        <label for="client_email">Username</label>
+        <input type="email" name="client_email" id="client_email" required value="<%= locals.client_email %>">
 
         <label for="client_password">Password</label>
-        <input type="password" name="client_password" id="client_password">
+        <span>Password must be at least 12 characters and contain at least 1 of each of the following: capital letter, number, special character (symbol).</span>
+        <input type="password" name="client_password" id="client_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
 
         <input id="login-submit" type="submit" value="Login">
 
