@@ -74,4 +74,17 @@ async function addNewVehicle(
     }
 }
 
-module.exports = {getClassifications, getVehichlesByClassificationId, getVehicleDetails, addClass, addNewVehicle};
+/* ****************************** */
+/* CHECK FOR EXISTING CLASSIFICATION */
+/* ****************************** */
+async function checkExistingClass(classification_name){
+    try {
+      const sql = "SELECT * FROM classification WHERE classification_name = $1"
+      const email = await pool.query(sql, [classification_name])
+      return email.rowCount
+    } catch (error) {
+      return error.message
+    }
+  }
+
+module.exports = {getClassifications, getVehichlesByClassificationId, getVehicleDetails, addClass, addNewVehicle, checkExistingClass};

@@ -56,13 +56,17 @@ Util.buildVehiclePage = function (data) {
 * Builds the Classification select section of Add Vehicle form
 ************************************************************** */
 
-Util.buildClassificationDropdown = function (data) {
+Util.buildClassificationDropdown = function (data, classification_id = null) {
     let display = `
     <label for="classification_id">Classification</label>
     <select id="classification_id" name="classification_id" required>
-    <option value="">Select a Classification...</option>`
+    <option>Select a Classification...</option>`
     data.rows.forEach((row) => {
-        display += `<option value="${row.classification_id}">${row.classification_name}</option>`
+        display += `<option value="${row.classification_id}"`
+        if (classification_id != null && row.classification_id == classification_id) {
+            display += " selected "
+        }
+        display += `>${row.classification_name}</option>`
     })
     display += `</select>`
     
