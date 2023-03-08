@@ -87,4 +87,4 @@ async function checkExistingClass(classification_name){
     }
   }
 
-module.exports = {getClassifications, getVehichlesByClassificationId, getVehicleDetails, addClass, addNewVehicle, checkExistingClass};
+module.exports = {getClassifications, getVehichlesByClassificationId, getVehicleDetails, addClass, addNewVehicle, checkExistingClass };

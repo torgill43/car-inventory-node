@@ -8,6 +8,12 @@ const regValidate = require('../utilities/account-validation')
 // Route to build login view
 router.get("/login", acctController.buildLogin);
 
+// Route to build account management view
+router.get("/", 
+  util.checkJWTToken,
+  util.jwtAuth,
+  acctController.buildAcctManage);
+
 // Route to build the registration view
 router.get("/register", acctController.buildRegister)
 router.post(
@@ -21,9 +27,7 @@ router.post(
     "/login",
     regValidate.loginRules(),
     regValidate.checkLoginData,
-    (req, res) => {
-      res.status(200).send('login process')
-    },
+    acctController.loginClient
   )
 
 

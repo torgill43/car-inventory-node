@@ -61,11 +61,10 @@ validate.checkAddClassData = async (req, res, next) => {
 validate.addVehicleRules = () => {
     return [
         // Add rules for classification selection
-        // body("classification_name")
-        //     .custom(async (classification_id) => {
-        //         if (!classification_id){}
-        //             throw new Error("Must select a value from the list.")
-        //         }),
+        body("classification_id")
+            .trim()
+            .isInt({ no_symbols: true })
+            .withMessage("The vehicle classification is required."),
 
         // inv_make must be provided
         body("inv_make")
@@ -92,8 +91,9 @@ validate.addVehicleRules = () => {
         // inv_description must be provided and a string
         body("inv_description")
             .trim()
+            .isString()
             .escape()
-            .isLength({ min: 1})
+            .isLength({ min: 15 })
             .withMessage("Please provide the vehicle description."), // on error this message is sent.
 
         // inv_price must be provided and a decimal
@@ -139,7 +139,7 @@ validate.checkAddVehicleData = async (req, res, next) => {
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav()
         let data = await invModel.getClassifications()
-        let dropdown = await utilities.buildClassificationDropdown(data)
+        let dropdown = await utilities.buildClassificationDropdown(data, classification_id)
         res.render("../views/inventory/add-vehicle-view", {
             title: "Add New Vehicle",
             nav,

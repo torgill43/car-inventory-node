@@ -104,13 +104,15 @@ invCont.buildAddVehicle = async function (req, res, next) {
     let data = await invModel.getClassifications()
     // console.log(`Data: ${data.rows}`)
     let dropdown = await utilities.buildClassificationDropdown(data)
-    console.log(`Display: ${dropdown}`)
+    // console.log(`Display: ${dropdown}`)
     res.render("./inventory/add-vehicle-view", {
         title: "Add New Vehicle",
         nav,
         errors: null,
         message: null,
         dropdown,
+        inv_image: null,
+        img_thumbnail: null,
     })
 }
 

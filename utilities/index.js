@@ -1,5 +1,7 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 /* *****************************************
 * Constructs the nav HTML unordered list
@@ -55,23 +57,61 @@ Util.buildVehiclePage = function (data) {
 /* **************************************************************
 * Builds the Classification select section of Add Vehicle form
 ************************************************************** */
-
 Util.buildClassificationDropdown = function (data, classification_id = null) {
     let display = `
     <label for="classification_id">Classification</label>
     <select id="classification_id" name="classification_id" required>
-    <option>Select a Classification...</option>`
+    <option value="">Select a Classification...</option>`
     data.rows.forEach((row) => {
-        display += `<option value="${row.classification_id}"`
-        if (classification_id != null && row.classification_id == classification_id) {
-            display += " selected "
-        }
-        display += `>${row.classification_name}</option>`
+        display += `<option value="${row.classification_id}"
+         ${(classification_id != null && row.classification_id == classification_id)? " selected ":""}
+         >${row.classification_name}</option>`
     })
     display += `</select>`
     
     return display
 }
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+    jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET, function (err) {
+      if (err) {
+        return res.status(403).redirect("/client/login")
+      }
+    return next()
+    })
+  }
+
+/* ****************************************
+ *  Authorize JWT Token
+ * ************************************ */
+Util.jwtAuth = (req, res, next) => {
+    const token = req.cookies.jwt
+    try {
+      const clientData = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+        req.clientData = clientData
+    next()
+    } catch (error){
+        res.clearCookie("jwt", { httpOnly: true })
+        return res.status(403).redirect("/")
+    }
+}
+  
+
+module.exports = Util
+
+
+
+
+
+
+
+
+
+
+
 
 // Build message
 // Util.getMessage = function () {
@@ -79,5 +119,3 @@ Util.buildClassificationDropdown = function (data, classification_id = null) {
 //     return message
 // }
 // console.log("Hit utilities.")
-
-module.exports = Util

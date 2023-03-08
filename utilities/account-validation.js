@@ -11,6 +11,7 @@ validate.registrationRules = () => {
       // firstname is required and must be string
       body("client_firstname")
         .trim()
+        .isString()
         .escape()
         .isLength({ min: 1 })
         .withMessage("Please provide a first name."), // on error this message is sent.
@@ -18,6 +19,7 @@ validate.registrationRules = () => {
       // lastname is required and must be string
       body("client_lastname")
         .trim()
+        .isString()
         .escape()
         .isLength({ min: 1 })
         .withMessage("Please provide a last name."), // on error this message is sent.

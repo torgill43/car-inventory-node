@@ -1,6 +1,8 @@
 const utilities = require("../utilities")
 const acctModel = require("../models/account-model.js")
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 /* ****************************************
 *  Deliver login view
@@ -14,6 +16,36 @@ async function buildLogin(req, res, next) {
       message: null,
     })
   }
+
+/* ****************************************
+ *  Process login request
+ * ************************************ */
+async function loginClient(req, res) {
+  let nav = await utilities.getNav()
+  const { client_email, client_password } = req.body
+  const clientData = await acctModel.getClientByEmail(client_email)
+  if (!clientData) {
+    const message = "Please check your credentials and try again."
+    res.status(400).render("clients/login", {
+      title: "Login",
+      nav,
+      message,
+      errors: null,
+      client_email,
+    })
+    return
+  }
+  try {
+    if (await bcrypt.compare(client_password, clientData.client_password)) {
+      delete clientData.client_password
+      const accessToken = jwt.sign(clientData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
+      res.cookie("jwt", accessToken, { httpOnly: true })
+      return res.redirect("/client/")
+    }
+  } catch (error) {
+    return res.status(403).send('Access Forbidden')
+  }
+}
 
 
 /* ****************************************
@@ -76,5 +108,18 @@ async function processRegistration(req, res, next) {
   }
 }  
 
+/* ****************************************
+*  Deliver Account Management view
+**************************************** */
+async function buildAcctManage(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("clients/acctManage", {
+    title: "Account Management",
+    nav,
+    errors: null,
+    message: null,
+  })
+}
 
-  module.exports = { buildLogin, buildRegister, processRegistration }
+
+  module.exports = { buildLogin, buildRegister, processRegistration, loginClient, buildAcctManage }

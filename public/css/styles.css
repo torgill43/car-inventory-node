@@ -53,9 +53,10 @@ header {
 nav ul {
   padding-left: 0;
   display: flex;
+  flex-wrap: wrap;
   background-color: var(--secondary);
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: center;
   border-radius: 5px;
 }
 
@@ -450,6 +451,10 @@ form input:required:valid {
 
   .accountLink a {
     font-size: large;
+  }
+
+  nav ul {
+  justify-content: space-evenly;
   }
 
   nav ul li {
