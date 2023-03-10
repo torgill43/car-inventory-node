@@ -2,6 +2,7 @@ const utilities = require("./")
 const { body, validationResult } = require("express-validator")
 const validate = {}
 const acctModel = require("../models/account-model")
+const bcrypt = require("bcryptjs")
 
 /*  **********************************
  *  Registration Data Validation Rules
@@ -103,12 +104,6 @@ validate.loginRules = () => {
           minSymbols: 1,
         })
         .withMessage("Password does not meet requirements.")
-        .custom(async (client_password) => {
-          const passwordExists = await acctModel.checkExistingPassword(client_password)
-          if (!passwordExists){
-            throw new Error("Password does not match. Please try again.")
-          }
-        })
     ]
   }
 

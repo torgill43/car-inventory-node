@@ -8,10 +8,13 @@ const regValidate = require('../utilities/account-validation')
 // Route to build login view
 router.get("/login", acctController.buildLogin);
 
+// Route to log user out
+router.get("/logout", acctController.logoutClient);
+
 // Route to build account management view
 router.get("/", 
-  util.checkJWTToken,
   util.jwtAuth,
+  util.checkClientLogin,
   acctController.buildAcctManage);
 
 // Route to build the registration view

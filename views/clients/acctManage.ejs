@@ -17,6 +17,15 @@
 <!-- Message -->
 <% if (message) { %>
     <p class="notice"><%= message %></p>
-    <% } %>
+<% } %>
 
-<h1>You're logged in.</h1>
+<% if (!locals.clientAuthorized)  {%>
+  <h1 class="acctWelcome">Welcome, <%= locals.clientData.client_firstname %></h1>
+  <p>You're logged in!</p>
+<% } else if (locals.clientAuthorized)  {%>
+  <h2 class="acctWelcome">Welcome, <%= locals.clientData.client_firstname %></h2>
+  <div class="invLinkCont">
+  <h3>Inventory Management</h3>
+  <p><a class="linkToInv" href="/inv/">View Options</a></p>
+  </div>
+<% } %> 

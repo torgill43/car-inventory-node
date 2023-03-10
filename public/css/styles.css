@@ -434,6 +434,27 @@ form input:required:valid {
   color: var(--primary);
 }
 
+/* ****************************** */
+/* ACCOUNT MANAGEMENT VIEW */
+/* ****************************** */
+.invLinkCont h3{
+  margin-bottom: 0;
+}
+
+.invLinkCont p{
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.linkToInv {
+  text-decoration: none;
+  color: var(--secondary);
+}
+
+.linkToInv:hover {
+  color: var(--primary);
+}
+
 
 @media screen and (min-width: 750px){
   body {

@@ -74,31 +74,73 @@ Util.buildClassificationDropdown = function (data, classification_id = null) {
 
 /* ****************************************
 * Middleware to check token validity
+* (Register process)
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
-    jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET, function (err) {
-      if (err) {
-        return res.status(403).redirect("/client/login")
-      }
-    return next()
-    })
-  }
+    if (req.cookies.jwt) {
+        jwt.verify(
+            req.cookies.jwt, 
+            process.env.ACCESS_TOKEN_SECRET, 
+            function (err, clientData) {
+                if (err) {
+                    res.clearCookie("jwt")
+                    return res.redirect("/client/login")
+                }
+            res.locals.clientData = clientData      
+            res.locals.loggedin = 1
+            next()
+            })
+    } else {
+        next()
+    } 
+}
 
 /* ****************************************
  *  Authorize JWT Token
+ *  (Login process)
  * ************************************ */
 Util.jwtAuth = (req, res, next) => {
     const token = req.cookies.jwt
     try {
       const clientData = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
         req.clientData = clientData
-    next()
+        console.log(clientData)
+
+        if (clientData.client_type == 'Employee' || clientData.client_type == 'Admin')
+        {
+            res.locals.clientAuthorized = 1
+            next()
+        } else {
+            res.locals.clientAuthorized = 0
+            next()
+            // return res.status(403).redirect("/client/login")            
+        }
     } catch (error){
         res.clearCookie("jwt", { httpOnly: true })
-        return res.status(403).redirect("/")
+        return res.status(403).redirect("/client/login")
     }
+
 }
   
+/* ****************************************
+ *  Middleware to check for client login
+ *  (Check if user is logged in)
+ * ************************************ */
+Util.checkClientLogin = (req, res, next) => {
+    if (res.locals.loggedin) {
+        next()
+    } else {
+        return res.redirect("/client/login")
+    }
+}
+
+/* ****************************************
+ *  Middleware to check client level
+ *  (Check if user is logged in)
+ * ************************************ */
+// Util.validClient = (req, res, next) => {
+
+// }
 
 module.exports = Util
 
