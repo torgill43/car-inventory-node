@@ -124,13 +124,26 @@ Util.jwtAuth = (req, res, next) => {
   
 /* ****************************************
  *  Middleware to check for client login
- *  (Check if user is logged in)
+ *  (Checks client type)
  * ************************************ */
 Util.checkClientLogin = (req, res, next) => {
-    if (res.locals.loggedin) {
-        next()
-    } else {
-        return res.redirect("/client/login")
+    const token = req.cookies.jwt
+    try {
+      const clientData = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+        req.clientData = clientData
+        // console.log(clientData)
+
+        if (clientData.client_type == 'Employee' || clientData.client_type == 'Admin')
+        {
+            next()
+        } else if (clientData.client_type == 'Basic') {
+            return res.status(403).redirect("/client")            
+        } else {
+            return res.status(403).redirect("/client/login")            
+        }
+    } catch (error){
+        res.clearCookie("jwt", { httpOnly: true })
+        return res.status(403).redirect("/client/login")
     }
 }
 

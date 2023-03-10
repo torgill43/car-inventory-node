@@ -15,6 +15,7 @@ router.get("/detail/:inv_id", invController.buildVehicleDetails);
 // Route to display management view
 router.get("/", 
     util.jwtAuth,
+    util.checkClientLogin,
     invController.deliverManagementView);
 
 // Route to add classification

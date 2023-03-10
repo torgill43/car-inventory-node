@@ -14,7 +14,6 @@ router.get("/logout", acctController.logoutClient);
 // Route to build account management view
 router.get("/", 
   util.jwtAuth,
-  util.checkClientLogin,
   acctController.buildAcctManage);
 
 // Route to build the registration view
