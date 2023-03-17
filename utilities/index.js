@@ -148,11 +148,18 @@ Util.checkClientLogin = (req, res, next) => {
 }
 
 /* ****************************************
- *  Middleware to check client level
- *  (Check if user is logged in)
- * ************************************ */
-// Util.validClient = (req, res, next) => {
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
+/* ****************************************
+ * Middleware for Throwing an Error
+ **************************************** */
+// Util.throwError(req, res, next) = {
+//     const error = "Uh oh, there was an error processing your request."
+//     throw error
 // }
 
 module.exports = Util

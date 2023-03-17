@@ -95,7 +95,7 @@ async function buildAcctManage(req, res, next) {
  * ************************************ */
 async function loginClient(req, res) {
   let nav = await utilities.getNav()
-  const { client_email, client_password } = req.body
+  const { client_password, client_email } = req.body
   // console.log(client_password)
   const clientData = await acctModel.getClientByEmail(client_email)
   // console.log(clientData.client_password)

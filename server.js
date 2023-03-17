@@ -37,16 +37,32 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(require("./routes/static"))
 // Index route
-app.get("/", baseController.buildHome)
+app.get("/", util.handleErrors(baseController.buildHome))
 // Inventory routes
 app.use("/inv", require("./routes/inventory-route"))
 // Account routes
 app.use("/client", require("./routes/account-route"))
+// // Error link route
+// app.use("/uh-oh", require("./routes/uh-oh-route"))
+// File Not Found Route - must be last route in list
+app.use(async (req, res, next) => {
+  next({status: 404, message: 'Uh oh, wrong way!'})
+})
 
-
-// Message Display Challenge route
-// app.use("/msg", require("./message/message-route") )
-// console.log("Hit server.js.")
+/* ***********************
+* Express Error Handler
+* Place after all other middleware
+*************************/
+app.use(async (err, req, res, next) => {
+  let nav = await util.getNav()
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  if(err.status == 404){ message = err.message} else {message = 'Oh no, there was a crash! Maybe try a different route?'}
+  res.render("errors/error", {
+    title: err.status || 'Server Error',
+    message,
+    nav
+  })
+})
 
 
 /* ***********************

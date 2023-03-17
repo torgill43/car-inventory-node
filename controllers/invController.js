@@ -22,6 +22,25 @@ invCont.buildByClassification = async function (req, res, next) {
 }
 
 /* ****************************************
+* Deliver the Error version of Classification Page
+**************************************** */
+invCont.buildByClassificationError = async function (req, res, next) {
+    // const classificationId = req.params.classificationId
+    console.log("Classification Error hit.")
+    let data = await invModel.getVehichlesByClassificationId(classificationId)
+    // console.log(data)
+    let nav = await utilities.getNav()
+    const className = data[0].classification_name
+    console.log(`classname: ${className}`)
+    res.render("./inventory/classification-view", {
+        title: className + " Vehicles",
+        nav,
+        message: null,
+        data,
+    })
+}
+
+/* ****************************************
 * Deliver the individual vehicle page
 **************************************** */
 invCont.buildVehicleDetails = async function (req, res, next) {

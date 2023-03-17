@@ -1,0 +1,14 @@
+<!-- Title -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Message -->
+<div id="crash-img">
+  <% if (message) { %>
+    <p class="error-message"><%= message %></p>
+  <% } %>
+  <img  src="/images/crash01.png" alt="crash">
+</div> 

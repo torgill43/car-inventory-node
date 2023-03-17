@@ -7,29 +7,31 @@ const util = require("../utilities")
 
 
 // Route to build inventory by classification view
-router.get("/type/:classificationId", invController.buildByClassification);
+router.get("/type/:classificationId", util.handleErrors(invController.buildByClassification));
 
 // Route to display inventory details
-router.get("/detail/:inv_id", invController.buildVehicleDetails);
+router.get("/detail/:inv_id", util.handleErrors(invController.buildVehicleDetails));
 
 // Route to display management view
 router.get("/", 
     util.jwtAuth,
     util.checkClientLogin,
-    invController.deliverManagementView);
+    util.handleErrors(invController.deliverManagementView));
 
 // Route to add classification
-router.get("/add-class", invController.buildAddClass)
+router.get("/add-class", util.handleErrors(invController.buildAddClass))
 router.post("/add-class",
-    invValidate.addClassRules(),
-    invValidate.checkAddClassData,
-    invController.processAddClass)
+    util.handleErrors(invValidate.addClassRules()),
+    util.handleErrors(invValidate.checkAddClassData),
+    util.handleErrors(invController.processAddClass))
 
 // Route to add vehicle
-router.get("/add-vehicle", invController.buildAddVehicle)
+router.get("/add-vehicle", util.handleErrors(invController.buildAddVehicle))
 router.post("/add-vehicle", 
-    invValidate.addVehicleRules(),
-    invValidate.checkAddVehicleData,
-    invController.processAddVehicle)
+    util.handleErrors(invValidate.addVehicleRules()),
+    util.handleErrors(invValidate.checkAddVehicleData),
+    util.handleErrors(invController.processAddVehicle))
+
+router.get("/error", util.handleErrors(invController.buildByClassificationError))
 
 module.exports = router;
