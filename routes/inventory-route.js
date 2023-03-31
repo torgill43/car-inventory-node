@@ -21,17 +21,35 @@ router.get("/",
 // Route to add classification
 router.get("/add-class", util.handleErrors(invController.buildAddClass))
 router.post("/add-class",
-    util.handleErrors(invValidate.addClassRules()),
-    util.handleErrors(invValidate.checkAddClassData),
+    invValidate.addClassRules(),
+    invValidate.checkAddClassData,
     util.handleErrors(invController.processAddClass))
 
 // Route to add vehicle
 router.get("/add-vehicle", util.handleErrors(invController.buildAddVehicle))
 router.post("/add-vehicle", 
-    util.handleErrors(invValidate.addVehicleRules()),
-    util.handleErrors(invValidate.checkAddVehicleData),
+    invValidate.addVehicleRules(),
+    invValidate.checkAddVehicleData,
     util.handleErrors(invController.processAddVehicle))
 
+// Routes to EDIT/DELETE vehicle/vehicle info
+// Route to deliver EDIT view
+router.get("/edit/:inv_id", util.handleErrors(invController.editVehicleInfo))
+// Route to process EDITS
+router.post("/edit", 
+    invValidate.addVehicleRules(),
+    invValidate.checkEditVehicleData,
+    invController.processEditVehicle)
+// Route to deliver DELETE view
+router.get("/delete/:inv_id", util.handleErrors(invController.buildDeleteVehicle))
+// Route to process DELETE
+router.post("/delete/", util.handleErrors(invController.processVehicleDeletion))
+
+
+// Error route
 router.get("/error", util.handleErrors(invController.buildByClassificationError))
+
+// Route to edit the inventory data
+router.get("/getVehicles/:classification_id", invController.getVehiclesJSON)
 
 module.exports = router;

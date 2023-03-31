@@ -86,7 +86,8 @@ Util.checkJWTToken = (req, res, next) => {
                     res.clearCookie("jwt")
                     return res.redirect("/client/login")
                 }
-            res.locals.clientData = clientData      
+            res.locals.clientData = clientData
+            console.log(res.locals.clientData.client_firstname)      
             res.locals.loggedin = 1
             next()
             })
@@ -104,7 +105,7 @@ Util.jwtAuth = (req, res, next) => {
     try {
       const clientData = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
         req.clientData = clientData
-        console.log(clientData)
+        console.log(`clientData from jwtAuth: ${clientData.client_type}`)
 
         if (clientData.client_type == 'Employee' || clientData.client_type == 'Admin')
         {

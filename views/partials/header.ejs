@@ -4,7 +4,8 @@
     <span class="siteName"><a class="homelink" href='/' title='Return to home page'>CSE Motors</a></span>
 
     <div id="tools">
-        <span class="accountLink"><%- locals.loggedin ? '<a href="/client/logout">Logout</a>' : '<a href="/client/login">My Account</a>'%> </span>
+        <span class="accountLink"><%- locals.loggedin ? `<a id="client-welcome" href="/client/">Welcome, ${locals.clientData.client_firstname}</a> <a href="/client/logout">Logout</a>` : '<a href="/client/login">My Account</a>'%> </span>
+    
 
         
     </div>

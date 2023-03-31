@@ -16,6 +16,22 @@ router.get("/",
   util.jwtAuth,
   util.handleErrors(acctController.buildAcctManage));
 
+// Route to edit account info
+router.get("/update-info/:client_email", util.handleErrors(acctController.buildAcctEdit))
+  //Route to update info
+router.post("/", 
+  regValidate.updateRules(),
+  regValidate.checkUpdateData,
+  util.jwtAuth,
+  acctController.updateAcctInfo)
+  // Route to update password
+router.post("/update-pass", 
+  regValidate.updatePassRules(),
+  regValidate.checkUpdatePass,
+  util.jwtAuth,
+  util.handleErrors(acctController.updatePass)
+  )
+
 // Route to build the registration view
 router.get("/register", util.handleErrors(acctController.buildRegister))
 router.post(

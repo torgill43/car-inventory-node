@@ -1,0 +1,53 @@
+<!-- Title -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<!-- Error --> 
+<% if (errors) { %>
+    <ul class="notice">
+   <% errors.array().forEach(error => { %>
+     <li><%= error.msg %></li>
+  <%  }) %>
+   </ul>
+  <% } %>
+
+<!-- Message -->
+<% if (message) { %>
+    <p class="notice"><%= message %></p>
+    <% } %>
+
+    <div class="update-client-cont">
+    <!-- <h2>Update Account Info</h2> -->
+    <form class="update-form" action="/client" method="post">
+        <label for="client_firstname">First Name</label>
+        <input type="text" name="client_firstname" id="client_firstname" required value="<%= locals.client_firstname %>">
+        
+        <label for="client_lastname">Last Name</label>
+        <input type="text" name="client_lastname" id="client_lastname" required value="<%= locals.client_lastname %>">
+        
+        <label for="client_email">Email Address</label>
+        <input type="email" name="client_email" id="client_email" required value="<%= locals.client_email %>">
+        
+        <input id="update-client-submit" type="submit" value="Update Details">
+
+        <input type="hidden" name="client_id"
+        <% if (locals.client_id) { %> value="<%= locals.client_id %>"
+        <% } %>>
+    </form>
+    <h2>Update Password</h2>
+    <form class="update-form" action="/client/update-pass" method="post">
+        <label for="client_password">Password</label>
+        <span>Password must be at least 12 characters and contain at least 1 of each of the following: capital letter, number, special character (symbol).</span>
+        <input type="password" name="client_password" id="client_password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required>
+        <p>*Warning: This will change the current password.</p>
+        
+        <input id="update-pass-submit" type="submit" value="Update Password">
+
+        <input type="hidden" name="client_id"
+        <% if (locals.client_id) { %> value="<%= locals.client_id %>"
+        <% } %>>
+    </form>
+</div>

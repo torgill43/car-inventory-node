@@ -18,14 +18,16 @@
 <% if (message) { %>
     <p class="notice"><%= message %></p>
 <% } %>
-
+<%- console.log(`Authorized: ${locals.clientAuthorized}`) %>
 <% if (!locals.clientAuthorized)  {%>
   <h1 class="acctWelcome">Welcome, <%= locals.clientData.client_firstname %></h1>
   <p>You're logged in!</p>
 <% } else if (locals.clientAuthorized)  {%>
   <h2 class="acctWelcome">Welcome, <%= locals.clientData.client_firstname %></h2>
   <div class="invLinkCont">
+  <%- console.log(`info: ${locals.clientData.client_firstname}`) %>
+  <p><a class="linkToMng" href="/client/update-info/<%- locals.clientData.client_email %>">Update Account Information</a></p>
   <h3>Inventory Management</h3>
-  <p><a class="linkToInv" href="/inv/">View Options</a></p>
+  <p><a class="linkToMng" href="/inv/">View Options</a></p>
   </div>
 <% } %> 

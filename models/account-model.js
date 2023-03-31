@@ -3,7 +3,6 @@ const pool = require("../database")
 /* ****************************** */
 /* REGISTER NEW CLIENT */
 /* ****************************** */
-
 async function registerClient (
     client_firstname,
     client_lastname,
@@ -64,5 +63,87 @@ async function getClientByEmail (client_email) {
   }
 }
 
+/* ****************************************** */
+/* Get Account Details for update */
+/* ****************************************** */
+async function getClientId(client_email) {
+  try {
+      console.log("client_email: " + client_email)
+      const data = await pool.query("SELECT * FROM public.client WHERE client_email = $1;", [client_email])
+      console.log("data: " + data.rows)
+      return data.rows
+  } catch (error) {
+      console.error('getclientid error ' + error)
+  }
+}
 
-module.exports = {registerClient, checkExistingEmail, checkExistingPassword, getClientByEmail}
+/* ****************************************** */
+/* Get Client Email for validation */
+/* ****************************************** */
+async function checkClientEmail(client_email) {
+  try {
+      console.log("client_email: " + client_email)
+      const data = await pool.query("SELECT * FROM public.client WHERE client_email = $1;", [client_email])
+      console.log("check client email data: " + data.rows[0])
+      return data.rows
+  } catch (error) {
+      console.error('getclientid error ' + error)
+  }
+}
+
+/* ****************************** */
+/* EDIT ACCOUNT INFO */
+/* ****************************** */
+async function editAcct(
+  client_id,
+  client_firstname,
+  client_lastname,
+  client_email
+) {
+  try {
+    const sql = 
+      "UPDATE public.client SET client_firstname = $1, client_lastname = $2, client_email = $3 WHERE client_id = $4"
+    const data = await pool.query(sql, [
+      client_firstname,
+      client_lastname,
+      client_email,
+      client_id
+    ])
+    console.log(`data: ${data.rows}`)
+    return data
+  } catch (error) {
+    console.error("model error: " + error)
+  }
+}
+
+/* ****************************** */
+/* EDIT ACCOUNT INFO */
+/* ****************************** */
+async function editPass(
+  client_id,
+  client_password
+) {
+  try {
+    const sql = 
+      "UPDATE public.client SET client_password = $1 WHERE client_id = $2"
+    const data = await pool.query(sql, [
+      client_password,
+      client_id
+    ])
+    console.log(`data: ${data.rows}`)
+    return data
+  } catch (error) {
+    console.error("model error: " + error)
+  }
+}
+
+module.exports = {
+  registerClient,
+  checkExistingEmail, 
+  checkExistingPassword, 
+  getClientByEmail,
+  getClientId,
+  checkClientEmail,
+  editAcct,
+  editPass
+}

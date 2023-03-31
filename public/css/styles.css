@@ -382,6 +382,41 @@ form input:required:valid {
   color: var(--primary);
 }
 
+.manage-inv-cont p{
+  font-size: larger;
+  margin-bottom: 5px;
+} 
+
+.manage-inv-cont label {
+  display: block;
+}
+
+.manage-inv-cont select {
+  font-size: medium;
+  margin-bottom: 10px; 
+}
+
+#inventoryDisplay td {
+  padding: 5px;
+}
+
+#inventoryDisplay, td {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+#inventoryDisplay a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+#inventoryDisplay a:hover {
+  color: var(--primary);
+}
+
+#inventoryDisplay a:active {
+  color: red;
+}
 /* ****************************** */
 /* ADD CLASSIFICATION VIEW */
 /* ****************************** */
@@ -446,12 +481,30 @@ form input:required:valid {
   margin-left: 5px;
 }
 
-.linkToInv {
+.linkToMng {
   text-decoration: none;
   color: var(--secondary);
 }
 
-.linkToInv:hover {
+.linkToMng:hover {
+  color: var(--primary);
+}
+
+/* ****************************** */
+/* VEHICLE EDIT VIEW */
+/* ****************************** */
+
+#edit-vehicle-submit {
+  width: 135px;
+  margin: 0 auto 3px;
+  font-family: var(--par-font);
+  font-weight: var(--par-weight);
+  font-size: medium;
+  cursor: pointer;
+}
+
+#edit-vehicle-submit:hover {
+  background-color: var(--secondary);
   color: var(--primary);
 }
 
@@ -611,6 +664,14 @@ form input:required:valid {
     margin-right: 15px;
   }
 
+  /* ****************************** */
+  /* Query - VEHICLE MANAGEMENT VIEW */
+  /* ****************************** */
+  #inventoryDisplay td {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+ 
   /* ****************************** */
   /* Query - ERROR VIEW */
   /* ****************************** */
