@@ -11,6 +11,9 @@ node_modules
 # values not to be shared and most of the values
 # will be manually created by you or dynamically # created on the hosting server
 .env
+# similar to the .env file, this file contains sensitive information for logging 
+# on for various client types
+client_info.txt
 
 # .DS_Store is only for Mac users
 **/.DS_Store
